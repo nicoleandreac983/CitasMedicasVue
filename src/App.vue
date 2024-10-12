@@ -12,7 +12,7 @@ export default {
         { nombre: 'Paciente', valor: '', tipo: 'text' },
         { nombre: 'Fecha', valor: '', tipo: 'date' },
         { nombre: 'Hora', valor: '', tipo: 'time' },
-        { nombre: 'Gravedad', valor: '', tipo: 'select' }, 
+        { nombre: 'Gravedad', valor: '', tipo: 'select' },
         { nombre: 'Motivo', valor: '', tipo: 'text' },
       ],
       citas: [],
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     validarFormulario() {
- 
+
       this.formularioValido = this.campos.every(campo => campo.valor !== '');
     },
     agregarCita() {
@@ -30,15 +30,15 @@ export default {
         paciente: this.campos[0].valor,
         fecha: this.campos[1].valor,
         hora: this.campos[2].valor,
-        gravedad: this.campos[3].valor, 
+        gravedad: this.campos[3].valor,
         motivo: this.campos[4].valor,
       };
-    
+
       this.citas.push(nuevaCita);
       this.limpiarFormulario();
     },
     limpiarFormulario() {
-      
+
       this.campos.forEach(campo => (campo.valor = ''));
       this.formularioValido = false;
     },
@@ -73,12 +73,12 @@ export default {
     </form>
     <p class="mensaje" v-if="citas.length === 0">Aún no hay consultas registradas.</p>
     <div v-else>
-      <CitaCard 
-        v-for="(cita, index) in citas" 
-        :key="index" 
-        :cita="cita"  
-        @eliminar-cita="eliminarCita(index)"  />
+      <div class="separador">
 
+      <CitaCard v-for="(cita, index) in citas" :key="index" :cita="cita" @eliminar-cita="eliminarCita(index)" :style="{margin : '10px'}">
+
+      </CitaCard>
+      </div>
     </div>
   </div>
 </template>
@@ -95,12 +95,12 @@ h1 {
   font-weight: bold;
 }
 
-form{
+form {
   border: 1px solid #cdb3d2cc;
-  border-radius: 10px; 
-  padding: 20px; 
-  max-width: 400px; 
-  margin: auto; 
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
   background-color: #cdb3d2cc;
 }
 
@@ -109,29 +109,39 @@ form{
 }
 
 label {
-  display: block; 
-  margin-bottom: 5px; 
+  display: block;
+  margin-bottom: 5px;
 }
 
 select {
-  width: 100%; 
-  padding: 8px; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
-  padding: 10px 15px; 
-  border: none; 
-  border-radius: 5px; 
-  background-color: #4CAF50; 
-  color: white; 
-  cursor: pointer; 
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
 }
+
 button:disabled {
   background-color: #ccc;
 }
+
 .rojo {
   color: red;
+}
+
+.separador {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
 }
 </style>

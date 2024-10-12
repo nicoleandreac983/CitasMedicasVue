@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+Aplicacion de ingreso de citas medicas
